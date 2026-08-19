@@ -178,12 +178,11 @@ public class IridiumColorAPI {
             version = version.substring(0, index);
         }
 
-        int lastDot = version.lastIndexOf(46);
-        if (version.indexOf(46) != lastDot) {
-            version = version.substring(0, lastDot);
+        String[] parts = version.split("\\.");
+        if (parts.length >= 2 && parts[0].equals("1")) {
+            return Integer.parseInt(parts[1].replaceAll("[^0-9]", ""));
         }
-
-        return Integer.parseInt(version.substring(2));
+        return Integer.parseInt(parts[0].replaceAll("[^0-9]", ""));
     }
 
     static {
